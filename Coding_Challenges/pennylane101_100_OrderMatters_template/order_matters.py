@@ -43,6 +43,9 @@ def compare_circuits(angles):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    angles = np.array(sys.stdin.read().split(","), dtype=float)
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        angles = f.read()
+    angles = np.array(angles.split(","), dtype=float)
     output = compare_circuits(angles)
     print(f"{output:.6f}")

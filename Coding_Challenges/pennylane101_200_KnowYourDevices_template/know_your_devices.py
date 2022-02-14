@@ -32,6 +32,14 @@ def compare_circuits(num_wires, params):
     """
 
     # QHACK #
+    # You have to
+    # decorate each function correspondingly to return a pure state or a density matrix.
+    # In other words, you need to determine the quantum devices that store the output
+    # state as a density matrix (which is required for mixed_circuit) and as a state
+    # vector (which is required for pure_circuit).
+    # define devices
+    #dev1 = qml.device("default.qubit", wires=num_wires)
+    #dev2 = qml.device("default.qubit", wires=num_wires)
     dev1 = qml.device("default.qubit", wires=num_wires)
     dev2 = qml.device("default.qubit", wires=num_wires)
 
@@ -59,7 +67,8 @@ def compare_circuits(num_wires, params):
         for i in range(0, num_wires):
             qml.RY(params[1][i], wires=i)
         return qml.density_matrix([x for x in range(0, num_wires)])
-    # QHACK
+
+    # QHACK #
 
     # DO NOT MODIFY any of the next lines in this scope
     mixed_state = mixed_circuit()
@@ -71,7 +80,9 @@ def compare_circuits(num_wires, params):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = sys.stdin.read().split(",")
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
     num_wires = int(inputs[0])
     l = int(len(inputs[1:]) / 2)
     params = [

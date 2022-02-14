@@ -22,8 +22,9 @@ def superdense_coding(bits, alpha):
     # QHACK #
 
     # Prepare state |ψi = cos(α)|0iA |0iB + sin(α)|1iA |1iB
-    qml.RY(alpha * 2, wires=0)
+    qml.RY(alpha*2, wires=0)
     qml.CNOT(wires=[0, 1])
+
 
     # Implement Alice's operations on her qubit here
     if bits == 0:
@@ -52,6 +53,8 @@ def return_probs(bits, alpha):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = sys.stdin.read().split(",")
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
     output = return_probs(int(inputs[0]), float(inputs[1]))
     print(f"{output:.6f}")

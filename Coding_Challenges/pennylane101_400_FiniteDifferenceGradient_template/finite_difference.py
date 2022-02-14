@@ -20,14 +20,16 @@ def my_finite_diff_grad(params):
 
     gradients = np.zeros([len(params)])
     for i in range(len(params)):
-        # QHACK # 
+        # QHACK #
         d = 0.001
         shifted = params.copy()
-        shifted[i] += d / 2
+        shifted[i] += d/2
         out_plus = cost(shifted)
         shifted[i] -= d
         out_minus = cost(shifted)
-        gradients[i] = (out_plus - out_minus) / d
+        gradients[i] = (out_plus - out_minus)/d
+
+
         # QHACK #
 
     return gradients
@@ -71,6 +73,9 @@ def cost(params):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    params = np.array(sys.stdin.read().split(","), dtype=float)
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
+    params = np.array(inputs, dtype=float)
     output = my_finite_diff_grad(params)
     print(*output, sep=",")
