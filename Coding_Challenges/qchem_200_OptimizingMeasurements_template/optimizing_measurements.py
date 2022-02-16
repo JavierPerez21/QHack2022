@@ -31,7 +31,7 @@ def join_operators(op1, op2):
 
     Args:
         - op1 (list(str)): First Pauli word (list of Pauli operators), e.g., ["Y", "I", "Z", "I"].
-        - op2 (list(str)): Second Pauli word (list of Pauli operators), e.g., ["Y", "I", "X", "I"].
+        - op2 (list(str)): Second Pauli word (list of Pauli operators), e.g., ["Y", "X", "I", "I"].
 
     Returns:
         - (list(str)): Pauli operator corresponding to the union of op1 and op2.
@@ -95,7 +95,9 @@ def compression_ratio(obs_hamiltonian, final_solution):
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
 
-    inputs = sys.stdin.read().split(",")
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
 
     obs_hamiltonian = []
     # open file and read the content in a list

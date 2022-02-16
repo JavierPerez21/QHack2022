@@ -52,7 +52,9 @@ def deutsch_jozsa(oracle):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = sys.stdin.read().split(",")
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
     numbers = [int(i) for i in inputs]
 
     def oracle():

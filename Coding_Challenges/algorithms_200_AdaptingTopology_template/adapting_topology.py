@@ -60,6 +60,8 @@ def n_swaps(cnot):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = sys.stdin.read().split(",")
+    filepath = sys.argv[1]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
     output = n_swaps(qml.CNOT(wires=[int(i) for i in inputs]))
     print(f"{output}")
