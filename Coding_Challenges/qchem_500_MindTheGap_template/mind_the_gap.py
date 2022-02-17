@@ -9,6 +9,8 @@ print("FInding the exited state energy takws toooooo long")
 
 
 
+
+
 def ground_state_VQE(H):
     """Perform VQE to find the ground state of the H2 Hamiltonian.
 
@@ -31,10 +33,12 @@ def ground_state_VQE(H):
     energy = 0
     hf = np.array([1, 1, 0, 0])
 
+
+    theta = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(1))
+
     def circuit(theta):
         qml.DoubleExcitation(theta[0], wires=qubits)
-        qml.SingleExcitation(theta[1], wires=[0, 2])
-        qml.SingleExcitation(theta[2], wires=[1, 3])
+
 
     @qml.qnode(dev)
     def cost_fn(theta):
@@ -55,7 +59,7 @@ def ground_state_VQE(H):
     theta_col = [theta]
     states = [get_ground_state(theta)]
 
-    max_iterations = 100
+    max_iterations = 200
     conv_tol = 1e-06
 
     for n in range(max_iterations):
@@ -141,17 +145,19 @@ def excited_state_VQE(H1):
     num_qubits = len(H1.wires)
     qubits = H1.wires
     num_param_sets = (2 ** num_qubits) - 1
-    # theta = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(num_param_sets, 3))
-    theta = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(3))
     dev = qml.device("default.qubit", wires=num_qubits)
 
     energy = 0
     hf = np.array([1, 1, 0, 0])
 
+    theta = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(1))
+
     def circuit(theta):
-        qml.DoubleExcitation(theta[0], wires=qubits)
-        qml.SingleExcitation(theta[1], wires=[0, 2])
-        qml.SingleExcitation(theta[2], wires=[1, 3])
+        #qml.DoubleExcitation(theta[0], wires=qubits)
+        qml.SingleExcitation(theta[0], wires=[1, 2])
+        #qml.SingleExcitation(theta[1], wires=[1, 3])
+
+
 
     @qml.qnode(dev)
     def cost_fn(theta):
@@ -173,7 +179,7 @@ def excited_state_VQE(H1):
     theta_col = [theta]
     states = [get_ground_state(theta)]
 
-    max_iterations = 200
+    max_iterations = 300
     conv_tol = 1e-05
 
     for n in range(max_iterations):
