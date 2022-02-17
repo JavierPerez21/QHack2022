@@ -132,7 +132,7 @@ def classify_ising_data(ising_configs, labels):
     return predictions
 
 
-  if __name__ == "__main__":
+if __name__ == "__main__":
     inputs = np.array(
         sys.stdin.read().split(","), dtype=int, requires_grad=False
     ).reshape(DATA_SIZE, -1)
