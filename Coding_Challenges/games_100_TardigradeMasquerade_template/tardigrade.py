@@ -25,12 +25,11 @@ def compute_entanglement(theta):
 
     dev = qml.device("default.qubit", wires=3)
 
-    # QHACK #
     G = np.identity(4)
-    G[1, 1] = np.cos(theta / 2)
-    G[1, 2] = np.sin(theta / 2)
-    G[2, 1] = -np.sin(theta / 2)
-    G[2, 2] = np.cos(theta / 2)
+    G[1, 1] = np.cos(theta/2)
+    G[1, 2] = np.sin(theta/2)
+    G[2, 1] = -np.sin(theta/2)
+    G[2, 2] = np.cos(theta/2)
 
     # QHACK #
     @qml.qnode(dev)
@@ -38,8 +37,9 @@ def compute_entanglement(theta):
         qml.Hadamard(wires=0)
         qml.PauliX(wires=1)
         qml.CNOT(wires=[0, 1])
-        # return qml.state()
+        #return qml.state()
         return qml.density_matrix([1])
+
 
     @qml.qnode(dev)
     def circuit_abt():
@@ -50,12 +50,19 @@ def compute_entanglement(theta):
         return qml.density_matrix([1])
 
     return second_renyi_entropy(circuit_ab()), second_renyi_entropy(circuit_abt())
+
     # QHACK #
 
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    theta = np.array(sys.stdin.read(), dtype=float)
+    filepath, answerpath = sys.argv[1], sys.argv[2]
+    with open(filepath, 'r') as f:
+        inputs = f.read()
+    theta = np.array(inputs, dtype=float)
 
     S2_without_tardigrade, S2_with_tardigrade = compute_entanglement(theta)
     print(*[S2_without_tardigrade, S2_with_tardigrade], sep=",")
+    with open(answerpath, 'r') as f:
+        answer = f.read()
+    print(answer)
