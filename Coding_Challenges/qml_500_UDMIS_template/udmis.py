@@ -1,9 +1,15 @@
 import sys
 import pennylane as qml
 from pennylane import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
 
-print("Doesn't work yet, still gotta find right ansatz")
 
+def get_graph(graph):
+    E, num_edges = edges(graph)
+    G = nx.from_numpy_matrix(E)
+    nx.draw(G, labels={node: str(node) for node in range(0, len(E))}, with_labels=True)
+    plt.show()
 
 def hamiltonian_coeffs_and_obs(graph):
     """Creates an ordered list of coefficients and observables used to construct
@@ -30,7 +36,7 @@ def hamiltonian_coeffs_and_obs(graph):
         obs.append(qml.PauliZ(i))
         coeffs.append(-1 / 2)
         obs.append(qml.Identity(i))
-
+    """
     for i in range(0, len(E)):
         for j in range(0, len(E[0])):
             if E[i, j]:
@@ -42,12 +48,22 @@ def hamiltonian_coeffs_and_obs(graph):
                 obs.append(qml.PauliZ(j))
                 coeffs.append(u / 4)
                 obs.append(qml.Identity(j))
-
+    """
+    for i in range(0, len(E)):
+        for j in range(0, len(E[0])):
+            if E[i, j]:
+                coeffs.append(u/4)
+                obs.append(qml.PauliZ(i) @ qml.PauliZ(j))
+                coeffs.append(u/4)
+                obs.append(qml.Identity(i) @ qml.PauliZ(j))
+                coeffs.append(u / 4)
+                obs.append(qml.PauliZ(i) @ qml.Identity(j))
+                coeffs.append(u / 4)
+                obs.append(qml.Identity(i) @ qml.Identity(j))
 
     # QHACK #
 
     return coeffs, obs
-
 
 def edges(graph):
     """Creates a matrix of bools that are interpreted as the existence/non-existence (True/False)
@@ -74,7 +90,6 @@ def edges(graph):
 
     return E, np.sum(E, axis=(0, 1))
 
-
 def variational_circuit(params, num_vertices):
     """A variational circuit.
 
@@ -86,11 +101,15 @@ def variational_circuit(params, num_vertices):
     # QHACK #
 
     for i in range(num_vertices):
-        qml.Hadamard(wires=i)
         qml.RX(params[i], wires=i)
-        qml.Hadamard(wires=i)
-    # QHACK #
+        #if i < num_vertices - 1:
+        #    qml.SingleExcitation(params[i + num_vertices], wires=[i, i+1])
+        #else:
+        #    qml.SingleExcitation(params[i + num_vertices], wires=[i, 0])
 
+
+
+    # QHACK #
 
 def train_circuit(num_vertices, H):
     """Trains a quantum circuit to learn the ground state of the UDMIS Hamiltonian.
@@ -120,8 +139,9 @@ def train_circuit(num_vertices, H):
     epochs = 500
 
     # QHACK #
-    opt = qml.optimize.GradientDescentOptimizer()
-    params = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(num_vertices))
+    num_layers = 3
+    opt = qml.optimize.QNGOptimizer(stepsize=0.1)
+    params = np.random.uniform(low=0, high=2 * np.pi, size=(num_vertices))
 
     for i in range(epochs):
         params, E = opt.step_and_cost(cost, params)
@@ -141,6 +161,8 @@ if __name__ == "__main__":
     graph = []
     for n in range(num_vertices):
         graph.append((x[n].item(), y[n].item()))
+
+    #get_graph(graph)
 
     coeffs, obs = hamiltonian_coeffs_and_obs(graph)
     H = qml.Hamiltonian(coeffs, obs)

@@ -23,7 +23,23 @@ def hamiltonian_coeffs_and_obs(graph):
 
     # QHACK #
 
-    # create the Hamiltonian coeffs and obs variables here
+    for i in range(0, num_vertices):
+        coeffs.append(-1 / 2)
+        obs.append(qml.PauliZ(i))
+        coeffs.append(-1 / 2)
+        obs.append(qml.Identity(i))
+
+    for i in range(0, len(E)):
+        for j in range(0, len(E[0])):
+            if E[i, j]:
+                coeffs.append(u/4)
+                obs.append(qml.PauliZ(i) @ qml.PauliZ(j))
+                coeffs.append(u/4)
+                obs.append(qml.Identity(i) @ qml.PauliZ(j))
+                coeffs.append(u / 4)
+                obs.append(qml.PauliZ(i) @ qml.Identity(j))
+                coeffs.append(u / 4)
+                obs.append(qml.Identity(i) @ qml.Identity(j))
 
     # QHACK #
 
@@ -66,7 +82,12 @@ def variational_circuit(params, num_vertices):
 
     # QHACK #
 
-    # create your variational circuit here
+    for i in range(num_vertices):
+        qml.RX(params[i], wires=i)
+        #if i < num_vertices - 1:
+        #    qml.SingleExcitation(params[i + num_vertices], wires=[i, i + 1])
+        #else:
+        #    qml.SingleExcitation(params[i + num_vertices], wires=[i, 0])
 
     # QHACK #
 
@@ -92,9 +113,9 @@ def train_circuit(num_vertices, H):
 
     # QHACK #
 
-    # define your trainable parameters and optimizer here
-    # change the number of training iterations, `epochs`, if you want to
-    # just be aware of the 80s time limit!
+    opt = qml.optimize.QNGOptimizer(stepsize=0.1)
+    params = np.random.uniform(low=0, high=2 * np.pi, size=(num_vertices))
+
 
     epochs = 500
 
