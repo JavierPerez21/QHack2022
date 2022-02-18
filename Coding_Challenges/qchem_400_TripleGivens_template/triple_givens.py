@@ -4,9 +4,6 @@ from pennylane import numpy as np
 
 NUM_WIRES = 6
 
-print("Works like this but matrix is not unitary because diagonal is just full of zeors"
-      "filling the diagonal with ones produces an wrong probability on state 111000 ie 56 "
-      "If we cannnot figure it our, disable warningas and submit the code")
 
 def triple_excitation_matrix(gamma):
     """The matrix representation of a triple-excitation Givens rotation.
@@ -22,14 +19,14 @@ def triple_excitation_matrix(gamma):
     c = qml.math.cos(gamma / 2)
     s = qml.math.sin(gamma / 2)
 
-    mat = qml.math.diag([0.0] * (2 ** NUM_WIRES))
+    mat = qml.math.diag([1.0] * (2 ** NUM_WIRES))
     i, j = 7, 56
-    mat = qml.math.scatter_element_add(mat, (i, i), c)
+    #mat = qml.math.scatter_element_add(mat, (i, i), c)
+    mat[i, i] = c
     mat = qml.math.scatter_element_add(mat, (i, j), -s)
     mat = qml.math.scatter_element_add(mat, (j, i), s)
-    mat = qml.math.scatter_element_add(mat, (j, j), c)
-    mat = qml.math.scatter_element_add(mat, (11, 11), 1)
-    mat = qml.math.scatter_element_add(mat, (25, 25), 1)
+    mat[j, j] = c
+    #mat = qml.math.scatter_element_add(mat, (j, j), c)
     return mat
 
     # QHACK #

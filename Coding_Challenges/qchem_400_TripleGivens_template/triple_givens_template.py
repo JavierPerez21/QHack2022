@@ -16,6 +16,18 @@ def triple_excitation_matrix(gamma):
     """
 
     # QHACK #
+    c = qml.math.cos(gamma / 2)
+    s = qml.math.sin(gamma / 2)
+
+    mat = qml.math.diag([1.0] * (2 ** NUM_WIRES))
+    i, j = 7, 56
+    #mat = qml.math.scatter_element_add(mat, (i, i), c)
+    mat[i, i] = c
+    mat = qml.math.scatter_element_add(mat, (i, j), -s)
+    mat = qml.math.scatter_element_add(mat, (j, i), s)
+    mat[j, j] = c
+    #mat = qml.math.scatter_element_add(mat, (j, j), c)
+    return mat
 
     # QHACK #
 
@@ -34,8 +46,16 @@ def circuit(angles):
     Returns:
         - (np.tensor): The probability of each computational basis state
     """
-
     # QHACK #
+    alpha, beta, gamma = angles[0], angles[1], angles[2]
+    # Initialize state
+    qml.BasisState(np.array([1, 1, 1, 0, 0, 0]), wires=[0, 1, 2, 3, 4, 5])
+    # SingleExcitation gate
+    qml.SingleExcitation(alpha, wires=[0, 5])
+    # DoubleExcitation gate
+    qml.DoubleExcitation(beta, wires=[0, 1, 4, 5])
+    # TripleExcitation gate
+    qml.QubitUnitary(triple_excitation_matrix(gamma), wires=[0, 1, 2, 3, 4, 5])
 
     # QHACK #
 
