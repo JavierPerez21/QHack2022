@@ -4,8 +4,9 @@ from pennylane import numpy as np
 
 NUM_WIRES = 6
 
-print("Control gates don't work, think if we just change DoubleExcitation for ControledDoubleExcitation")
-print("and TripleExcitation for ControledTripleExcitation")
+print("Works like this but matrix is not unitary because diagonal is just full of zeors"
+      "filling the diagonal with ones produces an wrong probability on state 111000 ie 56 "
+      "If we cannnot figure it our, disable warningas and submit the code")
 
 def triple_excitation_matrix(gamma):
     """The matrix representation of a triple-excitation Givens rotation.
@@ -21,9 +22,14 @@ def triple_excitation_matrix(gamma):
     c = qml.math.cos(gamma / 2)
     s = qml.math.sin(gamma / 2)
 
-    mat = qml.math.diag([1.0] * 15 + [c] + [1.0] * 32 + [c] + [1.0] * 15)
-    mat = qml.math.scatter_element_add(mat, (15, 48), -s)
-    mat = qml.math.scatter_element_add(mat, (48, 15), s)
+    mat = qml.math.diag([0.0] * (2 ** NUM_WIRES))
+    i, j = 7, 56
+    mat = qml.math.scatter_element_add(mat, (i, i), c)
+    mat = qml.math.scatter_element_add(mat, (i, j), -s)
+    mat = qml.math.scatter_element_add(mat, (j, i), s)
+    mat = qml.math.scatter_element_add(mat, (j, j), c)
+    mat = qml.math.scatter_element_add(mat, (11, 11), 1)
+    mat = qml.math.scatter_element_add(mat, (25, 25), 1)
     return mat
 
     # QHACK #
@@ -49,9 +55,7 @@ def circuit(angles):
     qml.BasisState(np.array([1, 1, 1, 0, 0, 0]), wires=[0, 1, 2, 3, 4, 5])
     # SingleExcitation gate
     qml.SingleExcitation(alpha, wires=[0, 5])
-    # qml.ctrl(qml.SingleExcitation, control=0)(alpha, wires=[0, 2])
     # DoubleExcitation gate
-    #qml.ctrl(qml.DoubleExcitation, control=0)(beta, wires=[1, 4, 5])
     qml.DoubleExcitation(beta, wires=[0, 1, 4, 5])
     # TripleExcitation gate
     qml.QubitUnitary(triple_excitation_matrix(gamma), wires=[0, 1, 2, 3, 4, 5])
