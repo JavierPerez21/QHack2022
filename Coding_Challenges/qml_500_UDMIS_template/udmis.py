@@ -2,7 +2,8 @@ import sys
 import pennylane as qml
 from pennylane import numpy as np
 
-print("Coeff and observable finder workes in other problems. Gives some error here. Everything else is donw so just re-implement that.")
+print("Doesn't work yet, still gotta find right ansatz")
+
 
 def hamiltonian_coeffs_and_obs(graph):
     """Creates an ordered list of coefficients and observables used to construct
@@ -16,51 +17,32 @@ def hamiltonian_coeffs_and_obs(graph):
         - obs (list(qml.ops)): List of qml.ops
     """
 
-    # QHACK #
     num_vertices = len(graph)
     E, num_edges = edges(graph)
-    for node in graph:
-        print(node)
-
     u = 1.35
+    obs = []
+    coeffs = []
 
-    num_vertices = len(graph)
-    M = np.zeros((num_vertices, num_vertices))
+    # QHACK #
+
     for i in range(0, num_vertices):
-        for j in range(0, num_vertices):
-            n1 = graph[i]
-            n2 = graph[j]
-            M[i, j] = np.sqrt((n1[0] - n2[0]) ** 2 + (n1[1] - n2[1]) ** 2)
+        coeffs.append(-1/2)
+        obs.append(qml.PauliZ(i))
+        coeffs.append(-1 / 2)
+        obs.append(qml.Identity(i))
 
-    from functools import reduce
-    from itertools import product
-    from operator import matmul
-    def decompose_hamiltonian(H):
-        N = int(np.log2(len(H)))
-        paulis = [qml.Identity, qml.PauliX, qml.PauliY, qml.PauliZ]
+    for i in range(0, len(E)):
+        for j in range(0, len(E[0])):
+            if E[i, j]:
+                coeffs.append(u/4)
+                obs.append(qml.PauliZ(i))
+                coeffs.append(u/4)
+                obs.append(qml.Identity(i))
+                coeffs.append(u / 4)
+                obs.append(qml.PauliZ(j))
+                coeffs.append(u / 4)
+                obs.append(qml.Identity(j))
 
-        obs = []
-        coeffs = []
-
-        for term in product(paulis, repeat=N):
-            matrices = [i._matrix() for i in term]
-            coeff = np.trace(reduce(np.kron, matrices) @ H) / (2 ** N)
-
-            if not np.allclose(coeff, 0):
-                coeffs.append(coeff)
-
-                if not all(t is qml.Identity for t in term):
-                    obs.append(reduce(matmul, [t(i) for i, t in enumerate(term) if t is not qml.Identity]))
-                else:
-                    obs.append(reduce(matmul, [t(i) for i, t in enumerate(term)]))
-
-        return coeffs, obs
-
-    M = (M < u)*1
-    print(M)
-    coeffs, obs = decompose_hamiltonian(M)
-
-    # create the Hamiltonian coeffs and obs variables here
 
     # QHACK #
 
@@ -101,17 +83,12 @@ def variational_circuit(params, num_vertices):
         - num_vertices (int): The number of vertices in the graph. Also used for number of wires.
     """
 
-
     # QHACK #
-    half = int(num_vertices / 2)
-    k = 0
-    for i in range(0, num_vertices):
-        if i % 2 == 0:
-            qml.DoubleExcitation(params[k], wires=[x for x in range(i, i +4)])
-            k += 1
-    for i in range(0, half):
-        qml.SingleExcitation(params[k], wires=[i, half-1+i])
-        k += 1
+
+    for i in range(num_vertices):
+        qml.Hadamard(wires=i)
+        qml.RX(params[i], wires=i)
+        qml.Hadamard(wires=i)
     # QHACK #
 
 
@@ -141,10 +118,10 @@ def train_circuit(num_vertices, H):
     # just be aware of the 80s time limit!
 
     epochs = 500
-    params = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(num_vertices))
-    opt = qml.optimize.AdamOptimizer(0.1)
 
     # QHACK #
+    opt = qml.optimize.GradientDescentOptimizer()
+    params = np.random.uniform(low=-np.pi / 2, high=np.pi / 2, size=(num_vertices))
 
     for i in range(epochs):
         params, E = opt.step_and_cost(cost, params)
@@ -156,14 +133,15 @@ if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
     filepath, answerpath = sys.argv[1], sys.argv[2]
     with open(filepath, 'r') as f:
-        inputs = f.read()
-    inputs = np.array(inputs.split(","), dtype=float, requires_grad=False)
+        inputs = f.read().split(",")
+    inputs = np.array(inputs, dtype=float, requires_grad=False)
     num_vertices = int(len(inputs) / 2)
     x = inputs[:num_vertices]
     y = inputs[num_vertices:]
     graph = []
     for n in range(num_vertices):
         graph.append((x[n].item(), y[n].item()))
+
     coeffs, obs = hamiltonian_coeffs_and_obs(graph)
     H = qml.Hamiltonian(coeffs, obs)
 
