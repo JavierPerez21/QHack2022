@@ -134,7 +134,7 @@ def optimize(alpha, beta):
     #Initialize parameters, choose an optimization method and number of steps
     init_params = np.array([0.5, 0.5, 0.5, 0.5], requires_grad=True)
     opt = qml.GradientDescentOptimizer(stepsize=0.1)
-    steps = 20
+    steps = 5
     # QHACK #
     
     # set the initial parameter values
@@ -144,23 +144,46 @@ def optimize(alpha, beta):
         # update the circuit parameters 
         # QHACK #
         params = opt.step(cost, params)
-        print("Winning Probability:", cost(params))
+        #print("Winning Probability:", cost(params))
 
-    #I'll just optimize it myself. This produces the right answer. Takes a long time.
-    #win_prob = 0
-    #best_params = np.array([0.5, 0.5, 0.5, 0.5])
-    #for thetaA0 in np.linspace(0, np.pi, steps):
-    #    if thetaA0 % (np.pi / 20) == 0:
-    #        print("thetaA0:", thetaA0)
-    #    for thetaA1 in np.linspace(0, np.pi, steps):
-    #        for thetaB0 in np.linspace(0, np.pi, steps):
-    #            for thetaB1 in np.linspace(0, np.pi, steps):
-    #                params = np.array([thetaA0, thetaA1, thetaB0, thetaB1])
-    #                if winning_prob(params, alpha, beta) > win_prob:
-    #                    win_prob = winning_prob(params, alpha, beta)
-    #                    best_params = params
-    #                    print("Winning Probability:", win_prob)
-    #                    print("Params:", params)
+    #I'll just optimize it myself. This produces the right answer.
+    best_params = np.array([0.5, 0.5, 0.5, 0.5])
+    thetaA0_start = 0
+    thetaA0_end = np.pi
+    thetaA1_start = 0
+    thetaA1_end = np.pi
+    thetaB0_start = 0
+    thetaB0_end = np.pi
+    thetaB1_start = 0
+    thetaB1_end = np.pi
+    
+    def run(thetaA0_start, thetaA0_end, thetaA1_start, thetaA1_end, thetaB0_start, thetaB0_end, thetaB1_start, thetaB1_end, best_params):
+        win_prob = 0
+        for thetaA0 in np.linspace(thetaA0_start, thetaA0_end, steps):
+            for thetaA1 in np.linspace(thetaA1_start, thetaA1_end, steps):
+                for thetaB0 in np.linspace(thetaB0_start, thetaB0_end, steps):
+                    for thetaB1 in np.linspace(thetaB1_start, thetaB1_end, steps):
+                        params = np.array([thetaA0, thetaA1, thetaB0, thetaB1])
+                        if winning_prob(params, alpha, beta) > win_prob:
+                            win_prob = winning_prob(params, alpha, beta)
+                            best_params = params
+                            #print("Winning Probability:", win_prob)
+                            #print("Params:", params)
+        return best_params
+
+    width = 0.1
+    for i in range(5):
+        best_params = run(thetaA0_start, thetaA0_end, thetaA1_start, thetaA1_end, thetaB0_start, thetaB0_end, thetaB1_start, thetaB1_end, best_params)
+        thetaA0_start = best_params[0]*(1-width)
+        thetaA0_end = best_params[0]*(1+width)
+        thetaA1_start = best_params[1]*(1-width)
+        thetaA1_end = best_params[1]*(1+width)
+        thetaB0_start = best_params[2]*(1-width)
+        thetaB0_end = best_params[2]*(1+width)
+        thetaB1_start = best_params[3]*(1-width)
+        thetaB1_end = best_params[3]*(1+width)
+    
+    params = best_params
         # QHACK #
 
     return winning_prob(params, alpha, beta)
