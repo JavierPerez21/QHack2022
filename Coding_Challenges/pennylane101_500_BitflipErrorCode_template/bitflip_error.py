@@ -3,6 +3,7 @@
 import sys
 import pennylane as qml
 from pennylane import numpy as np
+import pandas as pd
 
 
 def error_wire(circuit_output):
@@ -22,7 +23,9 @@ def error_wire(circuit_output):
     """
 
     # QHACK #
+
     probs = abs(np.array([circuit_output[i][i] for i in range(0, len(circuit_output))]))
+    print(probs)
     p_, p0, p1, p2 = 0, 0, 0, 0
     p_ = probs[0] + probs[4]
     if probs[7] != 0:
@@ -40,7 +43,7 @@ dev = qml.device("default.mixed", wires=3)
 
 
 @qml.qnode(dev)
-def circuit(p, alpha, tampered_wire):
+def dm_circuit(p, alpha, tampered_wire):
     """A quantum circuit that will be able to identify bitflip errors.
 
     DO NOT MODIFY any already-written lines in this function.
@@ -56,8 +59,10 @@ def circuit(p, alpha, tampered_wire):
 
     qml.QubitDensityMatrix(density_matrix(alpha), wires=[0, 1, 2])
 
-    # QHACK #
+
     others = [i for i in [0, 1, 2] if i != tampered_wire]
+
+    # QHACK #
 
     qml.CNOT(wires=[tampered_wire, others[0]])
     qml.CNOT(wires=[tampered_wire, others[1]])
@@ -84,11 +89,22 @@ def density_matrix(alpha):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = np.array(sys.stdin.read().split(","), dtype=float)
+    filepath, answerpath = sys.argv[1], sys.argv[2]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
+    inputs = np.array(inputs, dtype=float)
     p, alpha, tampered_wire = inputs[0], inputs[1], int(inputs[2])
-
     error_readout = np.zeros(4, dtype=float)
-    circuit_output = circuit(p, alpha, tampered_wire)
-    error_readout = error_wire(circuit_output)
+    dms = {}
+    for tampered_wire in [0, 1, 2]:
+        dm = dm_circuit(p, alpha, tampered_wire)
+        dms[tampered_wire] = pd.DataFrame(dm)
+    # Probs given by diagonal of density matrix
+    p, alpha, tampered_wire = inputs[0], inputs[1], int(inputs[2])
+    dm = dm_circuit(p, alpha, tampered_wire)
+    error_readout = error_wire(dm)
 
     print(*error_readout, sep=",")
+    with open(answerpath, 'r') as f:
+        answer = f.read()
+    print(answer)
