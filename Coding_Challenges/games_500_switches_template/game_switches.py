@@ -41,6 +41,7 @@ def switch(oracle):
     sample = circuit()
 
     # QHACK #
+    print(sample)
 
     sample = [i for i in range(0, len(sample)) if sample[i] > 0.5]
 
@@ -50,7 +51,9 @@ def switch(oracle):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = sys.stdin.read().split(",")
+    filepath, answerpath = sys.argv[1], sys.argv[2]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
     numbers = [int(i) for i in inputs]
 
     def oracle():
@@ -59,3 +62,7 @@ if __name__ == "__main__":
 
     output = switch(oracle)
     print(*output, sep=",")
+
+    with open(answerpath, 'r') as f:
+        answer = f.read()
+    print(answer)
