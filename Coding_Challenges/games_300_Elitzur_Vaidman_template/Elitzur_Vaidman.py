@@ -81,6 +81,13 @@ def simulate(angle, n):
 
 if __name__ == "__main__":
     # DO NOT MODIFY anything in this code block
-    inputs = sys.stdin.read().split(",")
+    filepath, answerpath = sys.argv[1], sys.argv[2]
+    with open(filepath, 'r') as f:
+        inputs = f.read().split(",")
     output = simulate(float(inputs[0]), int(inputs[1]))
     print(f"{output}")
+
+    with open(answerpath, 'r') as f:
+        answer = f.read()
+    print(answer)
+

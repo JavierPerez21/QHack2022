@@ -18,11 +18,23 @@ def find_the_car(oracle):
     Returns:
         - (int): 0, 1, 2, or 3. The door that the car is behind.
     """
+    def difuser(i1, i2):
+        for i in [0, 1]:
+            qml.Hadamard(wires=i)
+        if i1 == 1:
+            qml.Z(wires=0)
+        if i2 == 1:
+            qml.Z(wires=1)
+        qml.CZ(wires=[0, 1])
+        for i in [0, 1]:
+            qml.Hadamard(wires=i)
 
     @qml.qnode(dev)
     def circuit1():
         # QHACK #
-
+        for i in [0, 1]:
+            qml.Hadamard(wires=i)
+        difuser(0, 0)
         # QHACK #
         return qml.sample()
 
@@ -38,7 +50,12 @@ def find_the_car(oracle):
 
     # QHACK #
 
-    # process sol1 and sol2 to determine which door the car is behind.
+    if sol1[-1] == 1:
+        return bin_to_det(sol1[:2])
+    elif sol2[-1] == 1:
+        return bin_to_det(sol2[:2])
+    else:
+
 
     # QHACK #
 
