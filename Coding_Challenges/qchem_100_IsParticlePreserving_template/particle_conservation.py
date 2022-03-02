@@ -64,16 +64,24 @@ def is_particle_preserving(circuit, n):
     """
     # QHACK #
     states = basis_states(n)
-    for state in states:
-        particles = sum(state)
-        output = circuit(state)
-        output_particles = sum(binary_list(np.argmax(output.numpy()), n))
-        if particles != output_particles:
-            #print(state)
-            #print(output)
-            return False
+    for i, state in enumerate(states):
+        #print(i)
+        initial_particles = sum(state)
+        #print(f"Initial state: {i}={state} with {initial_particles} particles")
+        # Calculate output state
+        output_state = circuit(state)
+        # Obtain all possible outputs when sampling
+        non_zeros = [x for x in np.where(np.real(output_state .numpy())**2 > 0)[0]]
+        possible_outputs = [binary_list(x, n) for x in non_zeros]
+        #print("Possible output states with numbers of particles", [str(x) + " w. " + str(sum(x)) for x in possible_outputs])
+        # Calculate number of particles of every possible output
+        for out in possible_outputs:
+          output_particles = sum(out)
+          if initial_particles != output_particles:
+              # Return False whenever the initial_particles are not the same as the output_particles
+              return False
+    # Return True in the default case when the circuit is particle preserving
     return True
-    # QHACK #
 
 
 if __name__ == "__main__":
