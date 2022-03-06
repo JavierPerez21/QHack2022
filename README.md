@@ -5,7 +5,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 
 ## Coding Challenges
 ### Pennylane101
-* [Order Matters](./Coding_Challenges/pennylane101_100_OrderMatters_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_100_OrderMatters.ipynb)
+* [Order Matters](./Coding_Challenges/pennylane101_100_OrderMatters_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_100_OrderMatters_template/pennylane101_100_OrderMatters.ipynb)
 * [Know Your Devices](./Coding_Challenges/pennylane101_200_KnowYourDevices_template/problem.pdf) --> 
 * [Superdense Coding](./Coding_Challenges/pennylane101_300_superdense_coding_template/problem.pdf) --> 
 * [Finite Difference Gradient](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/problem.pdf) --> 
@@ -23,13 +23,13 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Find The Car](./Coding_Challenges/games_400_FindTheCar_template/problem.pdf) --> 
 * [Switches](./Coding_Challenges/games_500_switches_template/problem.pdf) --> [See solution](./Coding_Challenges/games_500_switches.ipynb)
 ### Quantum Chemistry
-* [Is Particle Preserving](./Coding_Challenges/qchem_100_IsParticlePreserving_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_100_IsParticlePreserving.ipynb)
-* [Optimizing Measurements](./Coding_Challenges/qchem_200_OptimizingMeasurements_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_200_OptimizingMeasurements.ipynb)
-* [Universality Givens](./Coding_Challenges/qchem_300_Universality_Givens_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_300_UniversalityGivens.ipynb)
-* [Triple Givens](./Coding_Challenges/qchem_400_Triple_Givens_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_400_TripleGivens.ipynb)
-* [Mind The Gap](./Coding_Challenges/qchem_500_MindTheGap_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_500_MindTheGap.ipynb)
+* [Is Particle Preserving](./Coding_Challenges/qchem_100_IsParticlePreserving_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_100_IsParticlePreserving_template/qchem_100_IsParticlePreserving.ipynb)
+* [Optimizing Measurements](./Coding_Challenges/qchem_200_OptimizingMeasurements_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_200_OptimizingMeasurements_template/qchem_200_OptimizingMeasurements.ipynb)
+* [Universality Givens](./Coding_Challenges/qchem_300_Universality_Givens_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_300_Universality_Givens_template/qchem_300_UniversalityGivens.ipynb)
+* [Triple Givens](./Coding_Challenges/qchem_400_Triple_Givens_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_400_Triple_Givens_template/qchem_400_TripleGivens.ipynb)
+* [Mind The Gap](./Coding_Challenges/qchem_500_MindTheGap_template/problem.pdf) --> [See solution](./Coding_Challenges/qchem_500_MindTheGap_template/qchem_500_MindTheGap.ipynb)
 ### Quantum Machine Learning
-* [Generating Fourier State](./Coding_Challenges/qml_100_GeneratingFourierState_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_100_GeneratingFourierState.ipynb)
+* [Generating Fourier State](./Coding_Challenges/qml_100_GeneratingFourierState_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_100_GeneratingFourierState_template/qml_100_GeneratingFourierState.ipynb)
 * [Who Likes The Beatles](./Coding_Challenges/qml_200_WhoLikesTheBeatles_template/problem.pdf) --> 
 * [Ising On The Cake](./Coding_Challenges/qml_300_IsingOnTheCake_template/problem.pdf) --> 
 * [Building QRAM](./Coding_Challenges/qml_400_BuildingQRAM_template/problem.pdf) --> 
