@@ -6,7 +6,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 ## Coding Challenges
 ### Pennylane101
 * [Order Matters](./Coding_Challenges/pennylane101_100_OrderMatters_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_100_OrderMatters_template/pennylane101_100_OrderMatters.ipynb)
-* [Know Your Devices](./Coding_Challenges/pennylane101_200_KnowYourDevices_template/problem.pdf) --> 
+* [Know Your Devices](./Coding_Challenges/pennylane101_200_KnowYourDevices_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_200_KnowYourDevices_template/pennylane101_200_KnowYourDevices.ipynb)
 * [Superdense Coding](./Coding_Challenges/pennylane101_300_superdense_coding_template/problem.pdf) --> 
 * [Finite Difference Gradient](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/problem.pdf) --> 
 * [Bit Flip Error Code](./Coding_Challenges/pennylane101_500_BitFlipErrorCode_template/problem.pdf) --> 
