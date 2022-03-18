@@ -8,7 +8,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Order Matters](./Coding_Challenges/pennylane101_100_OrderMatters_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_100_OrderMatters_template/pennylane101_100_OrderMatters.ipynb)
 * [Know Your Devices](./Coding_Challenges/pennylane101_200_KnowYourDevices_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_200_KnowYourDevices_template/pennylane101_200_KnowYourDevices.ipynb)
 * [Superdense Coding](./Coding_Challenges/pennylane101_300_superdense_coding_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_300_superdense_coding_template/pennylane101_300_superdense_coding.ipynb)
-* [Finite Difference Gradient](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/problem.pdf) --> 
+* [Finite Difference Gradient](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/pennylane101_400_FiniteDifferenceGradient.ipynb)
 * [Bit Flip Error Code](./Coding_Challenges/pennylane101_500_BitFlipErrorCode_template/problem.pdf) --> 
 ### Algorithms
 * [Detusch Jozsa](./Coding_Challenges/algorithms_100_DetuschJozsa_template/problem.pdf) --> 
