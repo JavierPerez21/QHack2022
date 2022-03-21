@@ -11,7 +11,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Finite Difference Gradient](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_400_FiniteDifferenceGradient_template/pennylane101_400_FiniteDifferenceGradient.ipynb)
 * [Bit Flip Error Code](./Coding_Challenges/pennylane101_500_BitflipErrorCode_template/problem.pdf) --> [See solution](./Coding_Challenges/pennylane101_500_BitflipErrorCode_template/pennylane101_500_BitFlipError.ipynb) 
 ### Algorithms
-* [Detusch Jozsa](./Coding_Challenges/algorithms_100_DetuschJozsa_template/problem.pdf) --> 
+* [Detusch Jozsa](./Coding_Challenges/algorithms_100_DeutschJozsa_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_100_DeutschJozsa_template/algorithms_100_DeutschJozsa.ipynb)
 * [Adapting Topology](./Coding_Challenges/algorithms_200_AdaptingTopology_template/problem.pdf) --> 
 * [AdderQFT](./Coding_Challenges/algorithms_300_AdderQFT_template/problem.pdf) --> 
 * [Quantum Counting](./Coding_Challenges/algorithms_400_QuantumCounting_template/problem.pdf) --> 
