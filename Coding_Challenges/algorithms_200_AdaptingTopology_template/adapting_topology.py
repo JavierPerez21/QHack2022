@@ -30,32 +30,30 @@ def n_swaps(cnot):
 
     # QHACK #
     wires = [x for x in cnot.wires]
-    def build_m(graph):
-        m = np.zeros((len(graph), len(graph)), dtype=int)
-        for i in range(len(graph)):
-            for j in graph[i]:
-                m[i, j] = 1
-                m[j, i] = 1
-        return m
-    m = build_m(graph)
-    def min_distance(edges, u, v):
-        visited = [0] * len(edges)
-        distance = [0] * len(edges)
-        # Code without queue
-        Q = [u]
-        visited[u] = True
-        while len(Q) > 0:
-
-            x = Q.pop(0)
-            for i in range(len(edges[x])):
-                if visited[int(edges[x][i])]:
-                    continue
-                distance[int(edges[x][i])] = distance[x] + 1
-                Q.append(int(edges[x][i]))
-                visited[int(edges[x][i])] = True
-        return distance[v]
-    return (min_distance(graph, wires[0], wires[1]) -1)*2
-    # QHACK #
+    edges = graph.copy()
+    control = wires[0]
+    target = wires[1]
+    # We need to create 2 lists to keep track of visited nodes as we move through the graph and the distances to these nodes from the control qubit
+    visited = [0] * len(edges)
+    distance = [0] * len(edges)
+    Q = [control] # Queue of nodes we can visit from current node
+    visited[control] = True
+    while len(Q) > 0:
+        x = Q.pop(0)
+        # Get first element of queue (node x)
+        for i in range(len(edges[x])):
+          # Iterate through nodes available from node x
+            if visited[int(edges[x][i])]:
+              # If we have already visited this node, we skip it, since that emans we already have a shorter connection to it
+                continue
+            # Otherwise the distance to this node i is equal to the current distance to node x, plus 1
+            distance[int(edges[x][i])] = distance[x] + 1
+            Q.append(int(edges[x][i])) # Add node i to the queue of available nodes
+            visited[int(edges[x][i])] = True  # Label node i as visited
+    # distance[target] will have the minimum number of edges between the control and target qubits.
+    # To get the number of SWAPS we simply do 2*(edges-1)
+    return (distance[target]-1)*2
+    # QHACK
 
 
 if __name__ == "__main__":
