@@ -13,7 +13,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 ### Algorithms
 * [Detusch Jozsa](./Coding_Challenges/algorithms_100_DeutschJozsa_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_100_DeutschJozsa_template/algorithms_100_DeutschJozsa.ipynb)
 * [Adapting Topology](./Coding_Challenges/algorithms_200_AdaptingTopology_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_200_AdaptingTopology_template/algorithms_200_AdaptingTopology.ipynb)
-* [AdderQFT](./Coding_Challenges/algorithms_300_AdderQFT_template/problem.pdf) --> 
+* [AdderQFT](./Coding_Challenges/algorithms_300_AdderQFT_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_300_AdderQFT_template/algorithms_300_adder_QFT.ipynb)
 * [Quantum Counting](./Coding_Challenges/algorithms_400_QuantumCounting_template/problem.pdf) --> 
 * [Detusch Jozsa Strikes Again](./Coding_Challenges/algorithms_500_DetuschJozsaStrikesAgain_template/problem.pdf) --> 
 ### Games
