@@ -1,5 +1,5 @@
 # QHack2022
-Welcome to the QHack2022 repo of QSolutions!
+Welcome to the QHack2022 repo of QSolutions! Our team completed all 25 Coding CHallenges and finished #29 in the leaderboard.
 
 This repository contains our teams solutions to all of the Coding Challenges of QHack2022.
 
