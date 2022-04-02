@@ -17,7 +17,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Quantum Counting](./Coding_Challenges/algorithms_400_QuantumCounting_template/problem.pdf) -->  [See solution](./Coding_Challenges/algorithms_400_QuantumCounting_template/algorithms_400_QuantumCounting.ipynb)
 * [Detusch Jozsa Strikes Again](./Coding_Challenges/algorithms_500_DeutschJozsaStrikesAgain_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_500_DeutschJozsaStrikesAgain_template/algorithms_500_DetuschJozsaStrikesAgain.ipynb)
 ### Games
-* [Tardigrade Masquerade](./Coding_Challenges/games_100_TardigradeMasquerade_template/problem.pdf) --> 
+* [Tardigrade Masquerade](./Coding_Challenges/games_100_TardigradeMasquerade_template/problem.pdf) --> [See solution](./Coding_Challenges/games_100_TardigradeMasquerade_template/games_100_TardigradeMasquerade.ipynb)
 * [CHSH](./Coding_Challenges/games_200_CHSH_template/problem.pdf) --> 
 * [Elitzur Vaidman](./Coding_Challenges/games_300_Elitzur_Vaidman_template/problem.pdf) --> 
 * [Find The Car](./Coding_Challenges/games_400_FindTheCar_template/problem.pdf) --> [See solution](./Coding_Challenges/games_400_FindTheCar.ipynb)
