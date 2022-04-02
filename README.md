@@ -15,7 +15,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Adapting Topology](./Coding_Challenges/algorithms_200_AdaptingTopology_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_200_AdaptingTopology_template/algorithms_200_AdaptingTopology.ipynb)
 * [AdderQFT](./Coding_Challenges/algorithms_300_AdderQFT_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_300_AdderQFT_template/algorithms_300_adder_QFT.ipynb)
 * [Quantum Counting](./Coding_Challenges/algorithms_400_QuantumCounting_template/problem.pdf) -->  [See solution](./Coding_Challenges/algorithms_400_QuantumCounting_template/algorithms_400_QuantumCounting.ipynb)
-* [Detusch Jozsa Strikes Again](./Coding_Challenges/algorithms_500_DetuschJozsaStrikesAgain_template/problem.pdf) --> 
+* [Detusch Jozsa Strikes Again](./Coding_Challenges/algorithms_500_DeutschJozsaStrikesAgain_template/problem.pdf) --> [See solution](./Coding_Challenges/algorithms_500_DeutschJozsaStrikesAgain_template/algorithms_500_DetuschJozsaStrikesAgain.ipynb)
 ### Games
 * [Tardigrade Masquerade](./Coding_Challenges/games_100_TardigradeMasquerade_template/problem.pdf) --> 
 * [CHSH](./Coding_Challenges/games_200_CHSH_template/problem.pdf) --> 
