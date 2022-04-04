@@ -19,7 +19,7 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 ### Games
 * [Tardigrade Masquerade](./Coding_Challenges/games_100_TardigradeMasquerade_template/problem.pdf) --> [See solution](./Coding_Challenges/games_100_TardigradeMasquerade_template/games_100_TardigradeMasquerade.ipynb)
 * [CHSH](./Coding_Challenges/games_200_CHSH_template/problem.pdf) --> [See solution](./Coding_Challenges/games_200_CHSH_template/games_200_CHSH.ipynb)
-* [Elitzur Vaidman](./Coding_Challenges/games_300_Elitzur_Vaidman_template/problem.pdf) --> 
+* [Elitzur Vaidman](./Coding_Challenges/games_300_Elitzur_Vaidman_template/problem.pdf) --> [See solution](./Coding_Challenges/games_300_Elitzur_Vaidman_template/games_300_ElitzurVaidman.ipynb)
 * [Find The Car](./Coding_Challenges/games_400_FindTheCar_template/problem.pdf) --> [See solution](./Coding_Challenges/games_400_FindTheCar.ipynb)
 * [Switches](./Coding_Challenges/games_500_switches_template/problem.pdf) --> [See solution](./Coding_Challenges/games_500_switches.ipynb)
 ### Quantum Chemistry
