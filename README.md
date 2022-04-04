@@ -32,5 +32,5 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Generating Fourier State](./Coding_Challenges/qml_100_GeneratingFourierState_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_100_GeneratingFourierState_template/qml_100_GeneratingFourierState.ipynb)
 * [Who Likes The Beatles](./Coding_Challenges/qml_200_WhoLikesTheBeatles_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_200_WhoLikesTheBeatles_template/qml_200_WhoLikesTheBeatles.ipynb)
 * [Ising On The Cake](./Coding_Challenges/qml_300_IsingOnTheCake_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_300_IsingOnTheCake_template/qml_300_IsingOnTheCake.ipynb)
-* [Building QRAM](./Coding_Challenges/qml_400_BuildingQRAM_template/problem.pdf) --> 
+* [Building QRAM](./Coding_Challenges/qml_400_BuildingQRAM_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_400_BuildingQRAM_template/qml_400_BuildingQRAM.ipynb)
 * [UDMIS](./Coding_Challenges/qml_500_UDMIS_template/problem.pdf) --> 
