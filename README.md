@@ -1,6 +1,7 @@
 # QHack2022 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JavierPerez21/QHack2022/master?filepath=index.ipynb) <a href="https://colab.research.google.com/github/JavierPerez21/QHack2022/blob/master/index.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 Welcome to the QHack2022 repo of QSolutions! Our team completed all 25 Coding CHallenges and finished #29 in the leaderboard.
 
+This repository contains our teams solutions to all the Coding Challenges of QHack2022.
 
 ## Coding Challenges
 ### Pennylane101
