@@ -34,3 +34,11 @@ This repository contains our teams solutions to all of the Coding Challenges of 
 * [Ising On The Cake](./Coding_Challenges/qml_300_IsingOnTheCake_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_300_IsingOnTheCake_template/qml_300_IsingOnTheCake.ipynb)
 * [Building QRAM](./Coding_Challenges/qml_400_BuildingQRAM_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_400_BuildingQRAM_template/qml_400_BuildingQRAM.ipynb)
 * [UDMIS](./Coding_Challenges/qml_500_UDMIS_template/problem.pdf) --> [See solution](./Coding_Challenges/qml_500_UDMIS_template/qml_500_UDMIS.ipynb)
+
+
+Team members:
+* [Javier Perez](https://github.com/JavierPerez21)
+* [Ivan Carvalho](https://github.com/IvanIsCoding)
+* [Quinn Bartlett](https://github.com/quinn00)
+* [Nolan Koblischke](https://github.com/NolanKoblischke)
+* [Leo Caffarello](https://github.com/leoCaffarello)
